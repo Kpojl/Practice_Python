@@ -1,9 +1,13 @@
 import math
+import time
+import datetime
+from datetime import timedelta
 
 sec = int(input("Ввседите колличество секунд:"))
 
-min = sec / 60 
-hour = min /60
-day = hour / 12
+days = sec // 86400 
+hours = sec % 86400 // 3600 
+minutes = sec % 3600 // 60 
+seconds = sec % 60 
 
-print("Дней", day, "Часов",hour, "Минут",min, "Секунд")
+print()
