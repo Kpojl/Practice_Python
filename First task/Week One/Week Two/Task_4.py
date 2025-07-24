@@ -1,12 +1,11 @@
 data = []
-a = int(input("Введите целое число (0 для окончяния ввода): "))
+a = input("Введите слово (оставьте пустую строку для завершения): ")
 
-while a != 0:
-    data.append(a)
-    a = int(input("Введите целое число (0 для окончяния ввода): "))
+while a != "":
+    if a not in data: 
+        data.append(a)
+    a = input("Введите слово (оставьте пустую строку для завершения): ")
 
-data.sort()
-
-print("Числа в порядке возрастания")
-for a in data:
-    print(a)
+print("Уникальные слова в порядке ввода:")
+for word in data:
+    print(word)
