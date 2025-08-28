@@ -1,4 +1,47 @@
+import os
+
 def analyze_letters_simple(filename):
+    # Покажем где программа ищет файл
+    current_dir = os.getcwd()
+    print(f"📁 Текущая папка: {current_dir}")
+    print(f"🔍 Ищем файл: {filename}")
+    print(f"📋 Полный путь: {os.path.join(current_dir, filename)}")
+    
+    # Остальной код без изменений
+    counts = {}
+    for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        counts[ch] = 0
+    
+    total_words = 0
+    
+    try:
+        with open(filename, 'r', encoding='utf-8') as file:
+            print(f"📖 Анализируем файл: {filename}")
+            print("-" * 40)
+            
+            for line in file:
+                words = line.split()
+                for word in words:
+                    clean_word = word.upper().rstrip('.,!?;:"()')
+                    clean_word = ''.join(char for char in clean_word if char.isalpha())
+                    
+                    if clean_word:
+                        total_words += 1
+                        for letter in set(clean_word):
+                            if letter in counts:
+                                counts[letter] += 1
+    
+    except FileNotFoundError:
+        print(f"❌ Ошибка: Файл '{filename}' не найден!")
+        print("Создаю тестовый файл для демонстрации...")
+        create_test_file()
+        return False
+    # ... остальной код
+
+def analyze_letters_simple(filename):
+
+
+    
     # Инициализируем счетчики
     counts = {}
     for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
