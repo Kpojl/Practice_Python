@@ -1,4 +1,4 @@
-Hello world! This is a test file.
-Programming is fun. Python is awesome.
 The quick brown fox jumps over the lazy dog.
-Gadsby was written without the letter E.
+Hello world! This is a test example.
+Programming is fun. Python is awesome.
+Statistics and analysis.
