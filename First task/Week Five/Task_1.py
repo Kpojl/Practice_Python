@@ -1,5 +1,4 @@
 def analyze_letter_statistics(filename):
-    # Инициализируем словарь для подсчета слов, содержащих каждую букву
     counts = {}
     for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
         counts[ch] = 0
@@ -11,13 +10,12 @@ def analyze_letter_statistics(filename):
             for line in file:
                 words = line.split()
                 for word in words:
-                    # Очищаем слово от знаков препинания и переводим в верхний регистр
                     clean_word = ''.join(char for char in word if char.isalpha()).upper()
                     
-                    if clean_word:  # Если слово не пустое после очистки
+                    if clean_word:  
                         total_words += 1
                         
-                        # Для каждой уникальной буквы в слове увеличиваем счетчик
+                        
                         unique_letters_in_word = set(clean_word)
                         for letter in unique_letters_in_word:
                             if letter in counts:
@@ -27,7 +25,6 @@ def analyze_letter_statistics(filename):
         print(f"Ошибка: Файл '{filename}' не найден.")
         return
     
-    # Вычисляем проценты для каждой буквы
     percentages = {}
     for letter, count in counts.items():
         if total_words > 0:
@@ -35,17 +32,14 @@ def analyze_letter_statistics(filename):
         else:
             percentages[letter] = 0
     
-    # Находим наиболее редко встречающуюся букву
     smallest_count = min(counts.values())
     rarest_letters = [letter for letter, count in counts.items() if count == smallest_count]
     
-    # Выводим результаты
     print("Статистика использования букв в словах:")
     print("=" * 50)
     print(f"Всего проанализировано слов: {total_words}")
     print()
     
-    # Сортируем буквы по алфавиту для вывода
     sorted_letters = sorted(counts.keys())
     for letter in sorted_letters:
         print(f"{letter}: {counts[letter]:4d} слов ({percentages[letter]:6.2f}%)")
@@ -55,9 +49,7 @@ def analyze_letter_statistics(filename):
     for letter in rarest_letters:
         print(f"{letter}: {counts[letter]} слов ({percentages[letter]:.2f}%)")
 
-# Пример использования
 if __name__ == "__main__":
-    # Создаем тестовый файл для демонстрации
     test_content = """The quick brown fox jumps over the lazy dog.
 Hello world! This is a test example.
 Programming is fun. Python is awesome.
@@ -66,5 +58,4 @@ Statistics and analysis."""
     with open('test_words.txt', 'w', encoding='utf-8') as f:
         f.write(test_content)
     
-    # Запускаем анализ
     analyze_letter_statistics('test_words.txt')
